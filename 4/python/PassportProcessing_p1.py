@@ -1,15 +1,10 @@
 import re
-
-class Passport():
-    def __init__(self, byr,iyr,eyr,hgt,hcl,ecl,pid,cid):
-        self.byr = byr
-        self.iyr = iyr
-        self.eyr = eyr
-        self.hgt = hgt
-        self.hcl = hcl
-        self.ecl = ecl
-        self.pid = pid
-        self.cid = cid
+result = 0
 with open('../input.txt', 'r') as file:
     input = file.read()
     passportStrings = input.split('\n\n')
+    passportPattern = re.compile(r'(byr:|iyr:|eyr:|hgt:|hcl:|ecl:|pid:)')
+    for passportString in passportStrings:
+        if (len(passportPattern.findall(passportString.replace('\n',' '))) == 7) :
+            result+=1
+print(result)
